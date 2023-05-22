@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
 import Python from '../../python/Python';
-import HeaderNav from '../HeaderNav';
-import HeaderUser from '../HeaderUser';
+import HeaderNav from '../../sidebar/Sidebar';
+import HeaderUser from '../../header/HeaderUser';
 
 const LanguagePython = () => {
   return (

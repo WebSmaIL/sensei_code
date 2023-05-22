@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import HeaderNav from '../home/HeaderNav';
-import HeaderUser from '../home/HeaderUser';
+import HeaderNav from '../sidebar/Sidebar';
+import HeaderUser from '../header/HeaderUser';
 import { FaPlay } from 'react-icons/fa';
 import Instructions from './Instructions';
 
