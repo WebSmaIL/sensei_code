@@ -4,6 +4,7 @@ import { AvatarUser } from "../../../assets/img/avatar";
 import { UserInfo } from "./interfaces";
 import { MOCK_DATA } from "./mockData";
 import { IoMdSettings } from "react-icons/io";
+import { NavLink } from 'react-router-dom';
 
 const InfoUser = () => {
   const userInfo: UserInfo = MOCK_DATA;
@@ -35,7 +36,7 @@ const InfoUser = () => {
             </ContainerText>
           </InfoUserWrapper>
         </InfoWrapper>
-        <Icon>
+        <Icon to='/settings'>
           <IoMdSettings />
         </Icon>
       </Wrapper>
@@ -104,10 +105,12 @@ const Text = styled.span`
   text-overflow: ellipsis;
 `;
 
-const Icon = styled.div`
+const Icon = styled(NavLink)`
   position: absolute;
   top: 0;
   right: 0;
+  text-decoration: none;
+  color: #fff;
   height: max-content;
   font-size: 30px;
   

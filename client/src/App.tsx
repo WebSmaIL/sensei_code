@@ -10,6 +10,8 @@ import EditorMain from './components/editor/EditorMain';
 import Profile from './components/profile/Profile';
 import HeaderUser from './components/header/HeaderUser';
 import HeaderNav from './components/sidebar/Sidebar';
+import SettingsUser from './components/settingUser/SettingsUser';
+
 
 const App = () => {
     return (
@@ -26,6 +28,7 @@ const App = () => {
                 <Route path="/task1" element={<Tasks />} />
                 <Route path="/editor" element={<EditorMain />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/settings" element={<SettingsUser/>} />
             </Routes>
         </>
     );
