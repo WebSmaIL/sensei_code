@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from "styled-components";
 
-import ContentHome from './ContentHome';
+import ContentHome from './content/ContentHome';
 
 
 const Home = () => {
