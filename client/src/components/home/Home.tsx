@@ -2,16 +2,13 @@ import React from 'react'
 
 import styled from "styled-components";
 
-import ContentHome from './ContentHome';
-import HeaderNav from './HeaderNav';
-import HeaderUser from './HeaderUser';
+import ContentHome from './content/ContentHome';
+
 
 const Home = () => {
   return (
     <>
     <Container>
-      <HeaderNav/>
-      <HeaderUser/>
       <ContentHome/>
     </Container>
     </>

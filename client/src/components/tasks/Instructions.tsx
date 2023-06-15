@@ -5,10 +5,9 @@ const Instructions = () => {
   return (
     <>
         <Container>
-            <Paragraph>Язык Python разработал голландский программист Гвидо Ван Россум (Guido van Rossum) в 1991 году. Гвидо был фанатом британского комедийного сериала «Monty Python’s Flying Circus», откуда и пришло название языка.</Paragraph>
-            <Paragraph>Давайте научим нашу программу писать сообщения и отображать их на экран!
-                        Выбрав среду программирования, без лишних раздумий и колебаний создаем новый файл .py, пишем свою первую программу:</Paragraph>
-            <Paragraph>print(“Hello world”)</Paragraph>
+            <Paragraph>Print работает с круглыми скобками. Вот корректный синтаксис: <Code>print()</Code></Paragraph>
+            <Paragraph>Если нужно вывести текст, то его необходимо заключить в скобки: <Code>print("Hello World")</Code>.</Paragraph>
+            <Paragraph>Символ <Code>#</Code> используется для добавления комментариев в текст. Эти комментарии не выполняются и не выводятся. Они выступают всего лишь заметками для тех, кто работает с кодом.</Paragraph>
             <Paragraph>После ее запуска будет выведено сообщение: Hello world.</Paragraph>
             <Hr/>
         
@@ -55,4 +54,10 @@ const Hr = styled.hr`
     background-position: center center;
     background-size: 100% 1px;
     border-color: transparent;
+`
+
+const Code = styled.code`
+    background: #97959519;
+    font-size: 16px;
+    padding: 2px 5px;
 `
