@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import parse from "html-react-parser";
 import Exercise from "./exercise/Exercise";
-import { ITheme } from "../../interfaces";
+import { ITheme } from "../../../../../../redux/ducks/tasks/interfaces";
+
 
 const Theme = ({ description, lang_id, tasks }: ITheme) => {
   return (

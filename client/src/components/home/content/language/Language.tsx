@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { useAppSelector } from "../../../../hooks";
+import { getTasks } from "../../../../redux/ducks/tasks/selector";
 import Module from "./module/Module";
-import { MOCK } from "./mock";
 
 const Language = () => {
+  const tasks = useAppSelector(getTasks)
+
   return (
     <>
       <Container>
-        <SpanHeader>{MOCK.lang_name}</SpanHeader>
-        <Module modules={MOCK.modules} />
+        <SpanHeader>{tasks.lang_name}</SpanHeader>
+        <Module modules={tasks.modules} />
       </Container>
     </>
   );

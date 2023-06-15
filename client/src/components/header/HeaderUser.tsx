@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { IoIosNotifications } from 'react-icons/io';
 import {AvatarUser} from '../../assets/img/avatar/index'
 import { TbMessage2Code } from 'react-icons/tb';
+import { useAppSelector } from '../../hooks';
+import { getUserInfo } from '../../redux/ducks/userInfo/selectors';
 
 const HeaderUser = () => {
+  const user = useAppSelector(getUserInfo);
   return (
     <>
         <Container>
@@ -14,8 +17,8 @@ const HeaderUser = () => {
             </Span>
             <UserInfo>
               <Avatar src={AvatarUser} ></Avatar>
-              <NameUser>kipyusha</NameUser>
-            </UserInfo>
+              <NameUser>{user.userInfo.login}</NameUser>
+            </UserInfo>  
             
         </Container>
     </>

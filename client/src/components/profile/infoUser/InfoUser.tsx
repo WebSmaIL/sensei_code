@@ -1,38 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 import { AvatarUser } from "../../../assets/img/avatar";
-import { UserInfo } from "./interfaces";
-import { MOCK_DATA } from "./mockData";
+
 import { IoMdSettings } from "react-icons/io";
 import { NavLink } from 'react-router-dom';
+import { getUserInfo } from "../../../redux/ducks/userInfo/selectors";
+import { useAppSelector } from "../../../hooks";
+
+
 
 const InfoUser = () => {
-  const userInfo: UserInfo = MOCK_DATA;
+  const user = useAppSelector(getUserInfo);
+  
 
   return (
     <InfoContainer>
       <Wrapper>
         <Avatar src={AvatarUser} />
         <InfoWrapper>
-          <UserName>{userInfo.login}</UserName>
-          <UserLvl>{userInfo.level}</UserLvl>
+          <UserName>{user.userInfo.login}</UserName>
+          {/* <UserLvl>{user.userInfo.level}</UserLvl> */}
           <InfoUserWrapper>
             <ContainerText>
-              <Text>Имя: {userInfo.fullName}</Text>
+              <Text>Имя: {user.userInfo.fullName}</Text>
               <Text>
-                Команда: {userInfo.clan ? userInfo.clan : "Неизвестно"}
+                Команда: {user.userInfo.clan ? user.userInfo.clan : "Неизвестно"}
               </Text>
             </ContainerText>
 
             <ContainerText>
-              <Text>Зарегистрирован с: {userInfo.date_of_register}</Text>
-              <Text>Последнее посещение: {userInfo.last_visit}</Text>
+              <Text>Зарегистрирован с: {user.userInfo.date_of_register}</Text>
+              <Text>Последнее посещение: {user.userInfo.last_visit}</Text>
             </ContainerText>
 
             <ContainerText>
-              <Text>Подписчики: {userInfo.followers}</Text>
-              <Text>Подписки: {userInfo.follows_count}</Text>
-              <Text>Друзья: {userInfo.friends}</Text>
+              <Text>Подписчики: {user.userInfo.followers}</Text>
+              <Text>Подписки: {user.userInfo.follows_count}</Text>
+              <Text>Друзья: {user.userInfo.friends}</Text>
             </ContainerText>
           </InfoUserWrapper>
         </InfoWrapper>
@@ -121,3 +125,4 @@ const Icon = styled(NavLink)`
     color: rgba(255, 255, 255, 0.6);
   }
 `;
+

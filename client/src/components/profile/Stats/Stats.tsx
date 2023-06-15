@@ -14,7 +14,7 @@ export default Stats;
 
 const StatsContainer = styled.div`
     width: 100%;
-    min-height: 1000px;
+    
     border-radius: 15px;
     padding: 20px;
 

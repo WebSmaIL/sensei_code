@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { SiPython } from "react-icons/si";
-import { IoLogoJavascript } from "react-icons/io";
-import { SiCplusplus } from "react-icons/si";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../../hooks";
+import { getLanguages } from "../../../redux/ducks/languages/selector";
 
 const ContentHome = () => {
+  const languages = useAppSelector(getLanguages);
+
   return (
     <>
       <Container>
@@ -13,26 +14,19 @@ const ContentHome = () => {
         <LanguageSelection>
           <Text>Выберите языки, на которых вы хотите обучаться:</Text>
           <ContainerLanguage>
-            <Language to={"/tasks/1"} background="#306988" color="#FFD43B">
-              <Svg>
-                <SiPython />
-              </Svg>
-              <LanguageText>Python</LanguageText>
-            </Language>
-
-            <Language to={"/tasks/3"} background="#FFD43B" color="#000">
-              <Svg>
-                <IoLogoJavascript />
-              </Svg>
-              <LanguageText>Javascript</LanguageText>
-            </Language>
-
-            <Language to={"/tasks/3"} background="#fff" color="#306988">
-              <Svg>
-                <SiCplusplus />
-              </Svg>
-              <LanguageText color="#306988">C++</LanguageText>
-            </Language>
+            {languages.map((el) => (
+              <Language
+                key={el.id}
+                to={`/tasks/${el.id}`}
+                background={el.background}
+                color={el.color}
+              >
+                <Svg>
+                  {<el.icon />}
+                </Svg>
+                <LanguageText>{el.title}</LanguageText>
+              </Language>
+            ))}
           </ContainerLanguage>
         </LanguageSelection>
       </Container>

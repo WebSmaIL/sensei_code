@@ -3,7 +3,9 @@ import styled from "styled-components";
 import Stats from "./Stats/Stats";
 import InfoUser from "./infoUser/InfoUser";
 
+
 const Profile = () => {
+  
   return <>
   <Container>
     <InfoUser/>
@@ -23,3 +25,4 @@ const Container = styled.div`
     align-items: center;
     
 `
+

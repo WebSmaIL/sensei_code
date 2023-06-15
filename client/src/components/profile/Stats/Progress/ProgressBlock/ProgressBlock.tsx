@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { downArrow } from "../../../../../assets/img/svgIcons";
+import ProgressContent from "./progressContent/ProgressContent";
+import StatsTasks from "./statsTasks/StatsTasks";
 
 interface Props {
   title: string;
   src: string;
-  child: JSX.Element;
+  
 }
 
-const ProgressBlock = ({ src, title, child }: Props) => {
+const ProgressBlock = ({ src, title}: Props) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div style={{marginBottom: 20}}>
+    <div style={{ marginBottom: 20 }}>
       <ProgressBlockContainer
         isActive={isActive}
         onClick={() => setIsActive(!isActive)}
@@ -27,7 +29,10 @@ const ProgressBlock = ({ src, title, child }: Props) => {
           </IconContainer>
         </PreviewContainer>
 
-        <ContentContainer>{child}</ContentContainer>
+        <ContentContainer>
+          <ProgressContent />
+          <StatsTasks />
+        </ContentContainer>
       </ProgressBlockContainer>
     </div>
   );
@@ -39,7 +44,7 @@ const Icon = styled.img<{ isActive?: boolean }>`
   width: 100%;
   height: 100%;
   transform: rotate(${(props) => (props.isActive ? "180deg" : "0")});
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 `;
 
 const Title = styled.h2`
@@ -66,12 +71,14 @@ const ProgressBlockContainer = styled.div<{ isActive: boolean }>`
     background: #00000045;
   }
 
-  &:hover div:first-child div {
+  /* &:hover div:first-child div {
     transform: scale(1.1);
-  }
+  } */
 `;
 
-const ContentContainer = styled.div``;
+const ContentContainer = styled.div`
+  padding: 0 20px;
+`;
 
 const PreviewContainer = styled.div`
   display: flex;

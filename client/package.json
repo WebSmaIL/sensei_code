@@ -23,6 +23,7 @@
     "@uiw/codemirror-theme-tokyo-night": "^4.19.9",
     "@uiw/react-codemirror": "^4.19.9",
     "aria-query": "^5.1.3",
+    "axios": "^1.4.0",
     "codemirror": "^6.0.1",
     "framer-motion": "^9.0.2",
     "html-react-parser": "^4.0.0",

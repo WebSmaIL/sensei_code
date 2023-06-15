@@ -1,17 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { IModule } from "../../../../../redux/ducks/tasks/interfaces";
 import TaskBlock from "./taskBlock/TaskBlock";
 import Theme from "./theme/Theme";
-import {IModule} from '../interfaces'
+
 
 interface Props {
-  modules: IModule[]
+  modules: IModule[] | undefined;
 }
 
 const Module = ({modules}: Props) => {
+
   return (
     <Container>
-      {modules.map((el) => (
+      {modules?.map((el) => (
         <TaskBlock
           title={el.title}
           child={
