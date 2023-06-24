@@ -20,6 +20,7 @@ body {
 ul[class],
 ol[class] {
     padding: 0;
+    
 }
 
 /* Убираем внешние отступы */
@@ -41,18 +42,19 @@ dd {
 }
 
 /* Выставляем основные настройки по-умолчанию для body */
-body {
+/* body {
     font-family: 'Bellota', sans-serif;
     min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
-}
+} */
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
 ul[class],
 ol[class] {
     list-style: none;
+    
 }
 
 /* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
@@ -64,6 +66,7 @@ a:not([class]) {
 img {
     max-width: 100%;
     display: block;
+    
 }
 
 /* Указываем понятную периодичность в потоке данных у article*/
