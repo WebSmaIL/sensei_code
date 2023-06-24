@@ -15,6 +15,7 @@ const Module = ({modules}: Props) => {
     <Container>
       {modules?.map((el) => (
         <TaskBlock
+          key={el.id}
           title={el.title}
           child={
             <Theme

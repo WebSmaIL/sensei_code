@@ -1,46 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ICurrentLanguage } from '../tasks/interfaces';
 
-import { INews } from './interface';
 
-let initialState: ICurrentLanguage = {
-    lang_name: "python",
-    modules: [
-    {
-      title: "1. Функция print()",
-      description: "dadadadasdasd",
-      lang_id: 1,
-      tasks: [
-        {
-          complexity: 1,
-          task_id: 1,
-          title: "Print",
-        },
-        {
-          complexity: 1,
-          task_id: 2,
-          title: "Print",
-        },
-      ],
-    },
-    {
-      title: "2. Функция print()",
-      description: "dsfkkskpofgpkfdpkogpkodfpkogopkpkosfkosapkof",
-      lang_id: 1,
-      tasks: [
-        {
-          complexity: 2,
-          task_id: 3,
-          title: "Print2",
-        },
-        {
-          complexity: 1,
-          task_id: 4,
-          title: "Print2",
-        },
-      ],
-    },
-  ]}
+let initialState = {};
 
 const NewsSlice = createSlice({
     name: 'news',

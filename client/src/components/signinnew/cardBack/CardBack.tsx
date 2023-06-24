@@ -1,33 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineUser } from "react-icons/ai";
 import { SlPhone } from "react-icons/sl";
 import { MdAlternateEmail } from "react-icons/md";
 import { TfiLock } from "react-icons/tfi";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { fetchRegister } from "../../../redux/ducks/userInfo/asyncThunk";
+import { getUserInfo } from "../../../redux/ducks/userInfo/selectors";
 
 const CardBack = () => {
+
+  const [login, setLogin] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const isAuthorize = useAppSelector(getUserInfo).userInfo.isAuthorize;
+
+  const handleSubmit = () => {
+    if (login && password && email)
+    dispatch(fetchRegister({email, login, password}))
+  }
+
+  const navigate = useNavigate();
+    useEffect(() => {
+      isAuthorize && navigate('/');
+    }, [navigate, isAuthorize]);
+
   return (
     <CardBackContainer>
       <CenterWrap>
         <Section>
           <Title>Sign Up</Title>
           <FormGroup>
-            <Input type="text" placeholder="Full Name" />
+            <Input type="text" placeholder="Login" value={login} onChange={(e)=>setLogin(e.target.value)} />
             <Icon><AiOutlineUser/></Icon>
           </FormGroup>
           <FormGroup>
-            <Input type="tel" placeholder="Phone Number" />
-            <Icon><SlPhone/></Icon>
-          </FormGroup>
-          <FormGroup>
-            <Input type="email" placeholder="Email" />
+            <Input type="email" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
             <Icon><MdAlternateEmail/></Icon>
           </FormGroup>
           <FormGroup>
-            <Input type="password" placeholder="Password" />
+            <Input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
             <Icon><TfiLock/></Icon>
           </FormGroup>
-          <SubmitButton>Register</SubmitButton>
+          <SubmitButton onClick={(e)=>{
+            e.preventDefault();
+            handleSubmit();
+          }}>Register</SubmitButton>
         </Section>
       </CenterWrap>
     </CardBackContainer>
@@ -36,7 +56,7 @@ const CardBack = () => {
 
 export default CardBack;
 
-const Section = styled.div`
+const Section = styled.form`
   position: relative;
   width: fit-content;
   display: block;

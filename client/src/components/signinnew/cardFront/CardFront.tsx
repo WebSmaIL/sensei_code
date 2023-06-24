@@ -1,24 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { MdAlternateEmail } from "react-icons/md";
 import { TfiLock } from "react-icons/tfi";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { fetchLogin } from "../../../redux/ducks/userInfo/asyncThunk";
+import { getUserInfo } from "../../../redux/ducks/userInfo/selectors";
+import { useNavigate } from "react-router-dom";
 
 const CardFront = () => {
+  const [login, setLogin] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const isAuthorize = useAppSelector(getUserInfo).userInfo.isAuthorize;
+
+  const handleSubmit = () => {
+    if (login && password)
+    dispatch(fetchLogin({login, password}))
+  }
+
+  const navigate = useNavigate();
+    useEffect(() => {
+      isAuthorize && navigate('/');
+    }, [navigate, isAuthorize]);
+
   return (
     <CardFrontContainer>
       <CenterWrap>
         <Section>
           <Title>Log In</Title>
           <FormGroup>
-            <Input type="email" placeholder="Email" />
+            <Input type="login" placeholder="Login" value={login} onChange={(e)=>setLogin(e.target.value)} />
             <Icon><MdAlternateEmail/></Icon>
             
           </FormGroup>
           <FormGroup>
-            <Input type="password" placeholder="Password" />
+            <Input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
             <Icon><TfiLock/></Icon>
           </FormGroup>
-          <SubmitButton>Login</SubmitButton>
+          <SubmitButton onClick={(e)=>{
+            e.preventDefault();
+            handleSubmit();
+          }}>Login</SubmitButton>
           <p>
             <Link>Forgot your password?</Link>
           </p>
@@ -40,7 +62,7 @@ const Link = styled.a`
   }
 `;
 
-const Section = styled.div`
+const Section = styled.form`
   position: relative;
   width: fit-content;
   display: block;

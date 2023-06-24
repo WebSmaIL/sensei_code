@@ -12,6 +12,7 @@ export interface ITheme {
 }
   
 export interface IModule extends ITheme {
+  id: number
   title: string;
 }
 

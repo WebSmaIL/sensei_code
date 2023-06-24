@@ -15,7 +15,6 @@ class NewsController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 queries_1.NEWS_QUERIES.getNews().then((result) => {
-                    console.log("ya");
                     res.status(200).json(result.rows);
                 }).catch((error) => {
                     console.log(error);

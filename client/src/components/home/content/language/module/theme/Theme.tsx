@@ -4,7 +4,6 @@ import parse from "html-react-parser";
 import Exercise from "./exercise/Exercise";
 import { ITheme } from "../../../../../../redux/ducks/tasks/interfaces";
 
-
 const Theme = ({ description, lang_id, tasks }: ITheme) => {
   return (
     <>
@@ -12,6 +11,7 @@ const Theme = ({ description, lang_id, tasks }: ITheme) => {
       <NumComplexity>Сложность</NumComplexity>
       {tasks.map((task) => (
         <Exercise
+          key={task.task_id}
           title={task.title}
           complexity={task.complexity}
           lang_id={lang_id}

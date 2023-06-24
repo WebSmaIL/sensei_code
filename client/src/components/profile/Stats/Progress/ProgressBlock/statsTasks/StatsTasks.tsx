@@ -1,16 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-
-
-
+import { useAppSelector } from '../../../../../../hooks'
+import { getUserInfo } from '../../../../../../redux/ducks/userInfo/selectors'
 
 const StatsTasks = () => {
-  return (
+    const userInfo = useAppSelector(getUserInfo).userInfo;
+    return (
     <Container>
         <Title>Статистика выполненных заданий:</Title>
         <TaskContainer>
-            <TaskProgress>Выполненно обучающих заданий (0)</TaskProgress>
-            <TaskProgress>Выполненно авторских заданий (0)</TaskProgress>
+            <TaskProgress>Выполненно заданий ({userInfo.tasks_completed})</TaskProgress>
             <TaskProgress>Комментарии (0)</TaskProgress>
             <TaskProgress>Достижения (0)</TaskProgress>
         </TaskContainer>

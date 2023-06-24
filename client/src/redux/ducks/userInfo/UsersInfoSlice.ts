@@ -6,26 +6,28 @@ import {
   fetchRegister,
   uploadAvatar,
   updateLogin,
-  updateLevel,
+  // updateLevel,
   updatePassword,
   updateEmail,
 } from "./asyncThunk";
+import { date_to_string } from "./helpers";
 
 const initialState: IState = {
   userInfo: {
-    id: "1",
-    email: "213",
+    id: "",
+    email: "",
     login: "",
     password: "",
     isAuthorize: false,
-    avatar_src: "",
-    clan: "",
     date_of_register: "",
-    followers: 0,
-    follows_count: 0,
-    friends: 0,
-    fullName: "",
-    last_visit: "",
+    subscribers_count: 0,
+    subscriptions_count: 0,
+    last_seen: "",
+    about: "",
+    is_admin: false,
+    tasks_completed: 0,
+    last_lang: "",
+    rank: ""
   },
   isLoading: false,
   errorMessage: undefined,
@@ -45,7 +47,6 @@ const userSlice = createSlice({
       state.userInfo.login = "";
   
       state.userInfo.isAuthorize = false;
-      state.userInfo.avatar_src = "";
     },
   },
   extraReducers: (builder) => {
@@ -59,10 +60,18 @@ const userSlice = createSlice({
         state.userInfo.id = action.payload.id;
         state.userInfo.email = action.payload.email;
         state.userInfo.login = action.payload.login;
+        state.userInfo.password = action.payload.password;
+        state.userInfo.subscribers_count = action.payload.subscribers_count;
+        state.userInfo.subscriptions_count = action.payload.subscriptions_count;
+        state.userInfo.date_of_register = date_to_string(new Date(action.payload.date_of_register));
+        state.userInfo.last_seen = date_to_string(new Date(action.payload.last_seen));
+        state.userInfo.about = action.payload.about;
+        state.userInfo.is_admin = action.payload.is_admin;
+        state.userInfo.rank = action.payload.rank;        
+        state.userInfo.last_lang = action.payload.last_lang;   
 
         state.userInfo.isAuthorize = true;
         state.errorMessage = undefined;
-
         state.isLoading = false;
       })
       .addCase(fetchRegister.rejected, (state, action) => {
@@ -75,15 +84,22 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
-        console.log(action.payload);
+        console.log(action.payload)
         state.userInfo.id = action.payload.id;
         state.userInfo.email = action.payload.email;
         state.userInfo.login = action.payload.login;
+        state.userInfo.password = action.payload.password;
+        state.userInfo.subscribers_count = action.payload.subscribers_count;
+        state.userInfo.subscriptions_count = action.payload.subscriptions_count;
+        state.userInfo.date_of_register = date_to_string(new Date(action.payload.date_of_register));
+        state.userInfo.last_seen = date_to_string(new Date(action.payload.last_seen));
+        state.userInfo.about = action.payload.about;
+        state.userInfo.is_admin = action.payload.is_admin;        
+        state.userInfo.rank = action.payload.rank;        
+        state.userInfo.last_lang = action.payload.last_lang;        
 
-        state.userInfo.avatar_src = action.payload.avatar_src;
         state.userInfo.isAuthorize = true;
         state.errorMessage = undefined;
-
         state.isLoading = false;
       })
       .addCase(fetchLogin.rejected, (state, action) => {
@@ -96,7 +112,6 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(uploadAvatar.fulfilled, (state, action) => {
-        state.userInfo.avatar_src = action.payload.avatar_src;
         state.isLoading = false;
       })
       .addCase(uploadAvatar.rejected, (state, action) => {

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../../hooks";
 import { getLanguages } from "../../../redux/ducks/languages/selector";
+import { SiCplusplus, SiPython } from "react-icons/si";
+import { IoLogoJavascript } from 'react-icons/io';
 
 const ContentHome = () => {
   const languages = useAppSelector(getLanguages);
@@ -22,7 +24,9 @@ const ContentHome = () => {
                 color={el.color}
               >
                 <Svg>
-                  {<el.icon />}
+                  {el.icon === "js" && <IoLogoJavascript/>}
+                  {el.icon === "python" && <SiPython/>}
+                  {el.icon === "c++" && <SiCplusplus/>}
                 </Svg>
                 <LanguageText>{el.title}</LanguageText>
               </Language>

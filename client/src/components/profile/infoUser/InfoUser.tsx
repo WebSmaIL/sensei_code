@@ -10,33 +10,28 @@ import { useAppSelector } from "../../../hooks";
 
 
 const InfoUser = () => {
-  const user = useAppSelector(getUserInfo);
-  
-
+  const user = useAppSelector(getUserInfo).userInfo;
+  console.log("userInfo PROFILE - ", user);
   return (
     <InfoContainer>
       <Wrapper>
         <Avatar src={AvatarUser} />
         <InfoWrapper>
-          <UserName>{user.userInfo.login}</UserName>
-          {/* <UserLvl>{user.userInfo.level}</UserLvl> */}
+          <UserName>{user.login}</UserName>
+          <UserLvl>{user.rank}</UserLvl>
           <InfoUserWrapper>
             <ContainerText>
-              <Text>Имя: {user.userInfo.fullName}</Text>
-              <Text>
-                Команда: {user.userInfo.clan ? user.userInfo.clan : "Неизвестно"}
-              </Text>
+              <Text><b>Обо мне:</b> {user.about}</Text>
             </ContainerText>
 
             <ContainerText>
-              <Text>Зарегистрирован с: {user.userInfo.date_of_register}</Text>
-              <Text>Последнее посещение: {user.userInfo.last_visit}</Text>
+              <Text><b>Зарегистрирован с:</b> {user.date_of_register}</Text>
+              <Text><b>Последнее посещение:</b> {user.last_seen}</Text>
             </ContainerText>
 
             <ContainerText>
-              <Text>Подписчики: {user.userInfo.followers}</Text>
-              <Text>Подписки: {user.userInfo.follows_count}</Text>
-              <Text>Друзья: {user.userInfo.friends}</Text>
+              <Text><b>Подписчики:</b> {user.subscribers_count}</Text>
+              <Text><b>Подписки:</b> {user.subscriptions_count}</Text>
             </ContainerText>
           </InfoUserWrapper>
         </InfoWrapper>
@@ -104,7 +99,7 @@ const Text = styled.span`
   color: rgba(255, 255, 255, 0.63);
   font-size: 16px;
   font-weight: 200;
-  white-space: nowrap;
+  white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

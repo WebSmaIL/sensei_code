@@ -5,7 +5,6 @@ class NewsController {
   async getNews(req: Request, res: Response) {
     try {
       NEWS_QUERIES.getNews().then((result) => {
-        console.log("ya");
         res.status(200).json(result.rows);
       }).catch((error: Error) => {
         console.log(error)

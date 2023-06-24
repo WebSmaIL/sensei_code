@@ -11,20 +11,20 @@ import HeaderNav from './components/sidebar/Sidebar';
 import SettingsUser from './components/settingUser/SettingsUser';
 import Language from './components/home/content/language/Language';
 import EditorMain from './components/tasks/editor/EditorMain';
-
-
+import { useAppSelector } from './hooks';
+import { getUserInfo } from './redux/ducks/userInfo/selectors';
 
 const App = () => {
+    const isAuthorize = useAppSelector(getUserInfo).userInfo.isAuthorize;
     
     return (
         <>
-            <HeaderUser/>
+            {isAuthorize && <HeaderUser/>}
+            {isAuthorize && <HeaderNav/>}
             
-            <HeaderNav/>
             <Routes>
-                <Route path="/" element={<StartHome />} />
+                <Route path="/" element={isAuthorize ? <Home /> : <StartHome />} />
                 <Route path="/login/:operation" element={<SignIn />} />
-                <Route path="/homepage" element={<Home />} />
 
                 <Route path="/tasks/:lang" element={<Language />} />
                 <Route path="/tasks/:lang_id/:task_id" element={<Tasks />} />

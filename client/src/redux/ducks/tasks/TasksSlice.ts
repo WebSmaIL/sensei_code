@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTasks } from './asyncThunk';
+// import { fetchTasks } from './asyncThunk';
 import { ICurrentLanguage } from './interfaces';
 
 let initialState: ICurrentLanguage = {
     lang_name: "python",
     modules: [
     {
+      id: 1,
       title: "1. Функция print()",
       description: "dadadadasdasd",
       lang_id: 1,
@@ -23,6 +24,7 @@ let initialState: ICurrentLanguage = {
       ],
     },
     {
+      id: 2,
       title: "2. Функция print()",
       description: "dsfkkskpofgpkfdpkogpkodfpkogopkpkosfkosapkof",
       lang_id: 1,

@@ -4,14 +4,15 @@ export interface IUser {
   email: string;
   login: string;
   password: string;
-  fullName: string;
-  clan: string;
   date_of_register: string;
-  last_visit: string;
-  followers: number;
-  follows_count: number;
-  friends: number;
-  avatar_src: string;
+  last_seen: string;
+  subscribers_count: number;
+  subscriptions_count: number;
+  tasks_completed: number,
+  about: string,
+  is_admin: boolean,
+  last_lang: string,
+  rank: string
 }
 
 export interface IUserStats {
