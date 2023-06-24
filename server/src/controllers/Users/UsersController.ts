@@ -1,128 +1,57 @@
-import { Response, Request } from 'express';
-import { query } from '../../database';
-import {
-    DELETE_USER_BY_ID,
-    GET_ALL,
-    GET_BY_ID,
-    ADD_USER,
-    UPDATE_USER_LOGIN_PASS,
-    UPDATE_USER_BALANCE,
-    UPDATE_USER_EMAIL,
-} from '../../database/queries';
-import { toNumber, toObject } from '../../helpers';
+import { Response, Request } from "express";
+import { v4 as uuidv4 } from "uuid";
+import { USERS_QUERIES } from "../../database/queries";
 
 class UsersController {
-    async getUsers(req: Request, res: Response, tableName: string) {
-        try {
-            query(GET_ALL(tableName), []).then((result) => {
-                res.send(result);
-                res.status(200);
-            });
-        } catch (error) {
-            res.status(500).json('Incorrect request');
-        }
+  async getUsers(req: Request, res: Response) {
+    try {
+      USERS_QUERIES.getUsers().then((result) => {
+        res.status(200).json(result.rows);
+      });
+    } catch (error) {
+      res.status(500).json("Incorrect request");
     }
+  }
 
-    async getUserById(req: Request, res: Response, tableName: string) {
-        try {
-            const { id } = req.params;
-            if (!id.split(':')[1]) throw Error();
-            query(GET_BY_ID(tableName), [id.split(':')[1]]).then((result) => {
-                try {
-                    res.send(result).status(200);
-                } catch (error) {
-                    res.status(500).json(error);
-                }
-            });
-        } catch (error) {
-            res.status(500).json('Incorrect request');
-        }
+  async getUserById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      USERS_QUERIES.getUserById(id).then((result) => {
+        res.status(200).json(result.rows);
+      });
+    } catch (error) {
+      res.status(500).json("Incorrect request");
     }
+  }
 
-    async deleteUserById(req: Request, res: Response, tableName: string) {
-        try {
-            const { id } = req.params;
-            if (!id.split(':')[1]) throw Error();
-            query(DELETE_USER_BY_ID, [id.split(':')[1]]).then((result) => {
-                try {
-                    if (!toObject(result)[1]) {
-                        throw Error('User not found');
-                    }
-                    res.send(`User with ${id} was deleted`);
-                    res.status(200);
-                } catch (error) {
-                    res.status(500).json(error);
-                }
-            });
-        } catch (error) {
-            res.status(500).json('Incorrect request');
-        }
+  async getUserByLogin(req: Request, res: Response) {
+    try {
+      
+    } catch (error) {
+      res.status(500).json({ errorMessage: error });
     }
+  }
 
-    async addUser(req: Request, res: Response, tableName: string) {
-        try {
-            const { id, name, login, password, email } = req.body;
-            query(ADD_USER, [id, name, login, password, email])
-                .then((result) => {
-                    res.status(200).json({ message: 'User was added' });
-                })
-                .catch((error) =>
-                    res.status(500).json({ message: 'User already exists' })
-                );
-        } catch (error) {
-            res.status(500).json('Incorrect request');
-        }
+  async addUser(req: Request, res: Response) {
+    try {
+      const {
+        login,
+        password,
+        email,
+      }: { login: string; password: string; email: string } = req.body;
+      const id: string = uuidv4();
+
+      USERS_QUERIES.addUser(id, login, password, email).then((result) => {
+        USERS_QUERIES.getUserById(id).then((result) => {
+          if (result) {
+            res.json(result.rows[0]).status(200);
+          }
+        });
+      });
+    } catch (error) {
+      res.status(500).json("Incorrect request");
     }
-
-    async updateUserLoginPass(req: Request, res: Response, tableName: string) {
-        try {
-            const { login, password, id } = req.body;
-
-            query(UPDATE_USER_LOGIN_PASS, [login, password, id])
-                .then((result) => {
-                    res.status(200).json({
-                        message: 'User login and password was updated',
-                    });
-                })
-                .catch((error) =>
-                    res.status(500).json({ message: 'User already exists' })
-                );
-        } catch (error) {
-            res.status(500).json('Incorrect request');
-        }
-    }
-
-    async updateUserBalance(req: Request, res: Response, tableName: string) {
-        try {
-            const { balance, id } = req.body;
-            query(UPDATE_USER_BALANCE, [balance, id])
-                .then((result) => {
-                    res.status(200).json({
-                        message: 'User balance was updated',
-                    });
-                })
-                .catch((error) =>
-                    res.status(500).json({ message: 'User already exists' })
-                );
-        } catch (error) {
-            res.status(500).json('Incorrect request');
-        }
-    }
-
-    async updateUserEmail(req: Request, res: Response, tableName: string) {
-        try {
-            const { email, id } = req.body;
-            query(UPDATE_USER_EMAIL, [email, id])
-                .then((result) => {
-                    res.status(200).json({ message: 'User email was updated' });
-                })
-                .catch((error) =>
-                    res.status(500).json({ message: 'User already exists' })
-                );
-        } catch (error) {
-            res.status(500).json('Incorrect request');
-        }
-    }
+  }
 }
 
 export default new UsersController();

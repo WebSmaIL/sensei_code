@@ -8,7 +8,7 @@ const StartHome = () => {
         <>
             <Container>
                 <Header/>
-                <Span>Страница без авторизации</Span>
+                {/* <Span>Страница без авторизации</Span> */}
             </Container>
         </>
     );

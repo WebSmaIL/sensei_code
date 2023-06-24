@@ -9,9 +9,9 @@ const Header = () => {
         <HeaderLeft>
           <Logo src={LogoSensei} />
 
-          <NavLink1 href="*">Ссылка 1</NavLink1>
+          {/* <NavLink1 href="*">Ссылка 1</NavLink1>
           <NavLink1 href="*">Ссылка 2</NavLink1>
-          <NavLink1 href="*">Ссылка 3</NavLink1>
+          <NavLink1 href="*">Ссылка 3</NavLink1> */}
         </HeaderLeft>
         <HeaderAuthorization>
           <NavLinkSign to='/login/1'>Вход</NavLinkSign>
