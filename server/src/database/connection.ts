@@ -1,20 +1,23 @@
-import mysql from 'mysql2/promise';
+import { Pool } from "pg";
 
-const db_config: mysql.PoolOptions = {
-    host: 'websmail.beget.tech',
-    user: 'websmail_spd',
-    database: 'websmail_spd',
-    password: '*W6YbmnU',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-};
-
-const pool = mysql.createPool(db_config);
-
-export async function query(sql: string, params: any) {
-    // const connection = await mysql.createConnection(db_config);
-    const [results] = await pool.execute(sql, params);
-
-    return results;
+const connectionData = {
+    user: "postgres",
+    host: "192.168.0.101",
+    database: "senseicodedb",
+    password: "s102839!",
+    port: 5432
 }
+
+const pool = new Pool(connectionData);
+
+pool.connect((err, client, done)=>{
+  if (err) {
+    console.error("Database connection error!!!")
+    throw new Error(err.message)
+  } else {
+    console.log(`Connection to the database with config ${JSON.stringify(connectionData)} was successful`)
+  }
+})
+
+export default pool;
+

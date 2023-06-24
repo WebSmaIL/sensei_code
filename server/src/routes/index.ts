@@ -1,4 +1,2 @@
-export { default as userRouter } from './users';
-export { default as leadersRouter } from './LeaderBoard';
-export { default as planetsRouter } from './Planets'
-export { default as spaceshipsRouter} from './SpaceShips'
+export { default as usersRouter } from './users';
+export { default as newsRouter } from './news';
