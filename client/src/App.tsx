@@ -13,6 +13,7 @@ import Language from './components/home/content/language/Language';
 import EditorMain from './components/tasks/editor/EditorMain';
 import { useAppSelector } from './hooks';
 import { getUserInfo } from './redux/ducks/userInfo/selectors';
+import PageNews from './components/home/content/news/pageNews/PageNews';
 
 const App = () => {
     const isAuthorize = useAppSelector(getUserInfo).userInfo.isAuthorize;
@@ -32,6 +33,7 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/settings" element={<SettingsUser/>} />
                 <Route path="/signin" element={<SignIn />} />
+                <Route path="/news/:id" element={<PageNews/>}/>
             </Routes>
         </>
     );

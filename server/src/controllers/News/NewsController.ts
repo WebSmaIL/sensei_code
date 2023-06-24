@@ -18,7 +18,7 @@ class NewsController {
     try {
       const { id } = req.params;
       NEWS_QUERIES.getNewsById(id).then((result) => {
-        res.status(200).json(result.rows);
+        res.status(200).json(result.rows[0]);
       });
     } catch (error) {
       res.status(500).json("Incorrect request");

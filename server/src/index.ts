@@ -12,6 +12,7 @@ app.use('/api', [usersRouter, newsRouter]);
 app.use(express.static('files'));
 app.use(cors());
 
+
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -36,6 +37,8 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+app.use(express.static('files'));
 
 const port = process.env.PORT || 8001;
 app.listen(port, () => {

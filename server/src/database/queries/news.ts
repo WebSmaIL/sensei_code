@@ -1,7 +1,7 @@
 import pool from "../connection";
 
 const NEWS_QUERIES = {
-  getNews: () => pool.query("SELECT (id, title, date) FROM news"),
+  getNews: () => pool.query("SELECT * FROM news"),
 
   getNewsById: (id: string) => pool.query(`SELECT * FROM news WHERE id=${id}`),
 

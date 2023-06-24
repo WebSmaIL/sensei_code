@@ -10,7 +10,7 @@ import {
   updatePassword,
   updateEmail,
 } from "./asyncThunk";
-import { date_to_string } from "./helpers";
+import { date_to_string } from "../../../helpers";
 
 const initialState: IState = {
   userInfo: {
