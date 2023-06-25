@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { UserInfoSlice, TasksSlice, LanguageSlice, NewsSlice } from './ducks';
+import { UserInfoSlice, TasksSlice, LanguageSlice, NewsSlice, DocumentSlice } from './ducks';
 import storage from 'redux-persist/lib/storage';
 
 import {
@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
     TasksSlice,
     LanguageSlice,
     NewsSlice,
+    DocumentSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

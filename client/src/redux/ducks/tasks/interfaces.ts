@@ -1,7 +1,9 @@
-interface ITasks {
+export interface ITasks {
   title: string;
   complexity: number;
   task_id: number;
+  question: string;
+  answer: string;
 }
 
 export interface ITheme {
@@ -12,6 +14,7 @@ export interface ITheme {
 }
   
 export interface IModule extends ITheme {
+  id: number
   title: string;
 }
 

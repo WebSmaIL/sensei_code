@@ -2,9 +2,9 @@ import { Pool } from "pg";
 
 const connectionData = {
     user: "postgres",
-    host: "192.168.0.101",
+    host: "localhost",
     database: "senseicodedb",
-    password: "s102839!",
+    password: "admin",
     port: 5432
 }
 

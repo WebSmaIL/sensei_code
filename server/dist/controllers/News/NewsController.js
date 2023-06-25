@@ -8,14 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const queries_1 = require("../../database/queries");
+const docs_1 = __importDefault(require("../../database/queries/docs"));
 class NewsController {
     getNews(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 queries_1.NEWS_QUERIES.getNews().then((result) => {
-                    console.log("ya");
                     res.status(200).json(result.rows);
                 }).catch((error) => {
                     console.log(error);
@@ -31,7 +34,34 @@ class NewsController {
             try {
                 const { id } = req.params;
                 queries_1.NEWS_QUERIES.getNewsById(id).then((result) => {
+                    res.status(200).json(result.rows[0]);
+                });
+            }
+            catch (error) {
+                res.status(500).json("Incorrect request");
+            }
+        });
+    }
+    getDocs(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                docs_1.default.getDocs().then((result) => {
                     res.status(200).json(result.rows);
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
+            catch (error) {
+                res.status(500).json("Incorrect request");
+            }
+        });
+    }
+    getDocsById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                docs_1.default.getDocsById(id).then((result) => {
+                    res.status(200).json(result.rows[0]);
                 });
             }
             catch (error) {

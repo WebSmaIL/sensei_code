@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import Editor from "./Editor/Editor";
 import styled from "styled-components";
 import Output from "./Output/Output";
 
-const EditorMain = () => {
+interface Props {
+  answer?: string
+}
+
+const EditorMain = ({answer}:Props) => {
+  const [isRightAnswer, setisRightAnswer] = useState(false);
+  const [isStart, setisStart] = useState(false);
+
   return (
     <MainWrapper>
-      <Editor />
-      <Output />
+      <Editor setisRightAnswer={setisRightAnswer} setisStart={setisStart} answer={answer} />
+      <Output isRight={isRightAnswer} isStart={isStart} />
     </MainWrapper>
   );
 };

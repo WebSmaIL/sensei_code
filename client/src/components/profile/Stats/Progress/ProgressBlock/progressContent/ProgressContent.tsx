@@ -1,30 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useAppSelector } from '../../../../../../hooks';
+import { getUserInfo } from '../../../../../../redux/ducks/userInfo/selectors';
 
 
 
 const ProgressContent = () => {
+    const userInfo = useAppSelector(getUserInfo).userInfo;
   return (
     <Container>
         <ContainerContent>
             <Title>Статистика:</Title>
-            <Text>Ранг: 1</Text>
-            <Text>Обучающие задания: 0</Text>
-            <Text>Авторские задания: 1</Text>
+            <Text>Ранг: {userInfo.rank}</Text>
+            <Text>Выполнено заданий: {userInfo.tasks_completed}</Text>
         </ContainerContent>
 
         <ContainerContent>
             <Title>Язык:</Title>
-            <Text>Всего изучаемых языков: 1</Text>
-            <Text>Обучение: 0</Text>
-            <Text>Последний язык: JavaScript</Text>
+            <Text>Последний язык: {userInfo.last_lang}</Text>
         </ContainerContent>
 
         <ContainerContent>
             <Title>Обучение:</Title>
-            <Text>Python: 0</Text>
-            <Text>JavaScript: 0</Text>
-            <Text>C++: 0</Text>
+            <Text>Python: {userInfo.tasks_completed}</Text>
+            <Text>JavaScript: {userInfo.tasks_completed}</Text>
+            <Text>C++: {userInfo.tasks_completed}</Text>
         </ContainerContent>
     </Container>
   )

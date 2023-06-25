@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../../hooks";
 import { getLanguages } from "../../../redux/ducks/languages/selector";
+import { SiCplusplus, SiPython } from "react-icons/si";
+import { IoLogoJavascript } from 'react-icons/io';
+import News from "./news/News";
 
 const ContentHome = () => {
   const languages = useAppSelector(getLanguages);
@@ -22,13 +25,20 @@ const ContentHome = () => {
                 color={el.color}
               >
                 <Svg>
-                  {<el.icon />}
+                  {el.icon === "js" && <IoLogoJavascript/>}
+                  {el.icon === "python" && <SiPython/>}
+                  {el.icon === "c++" && <SiCplusplus/>}
                 </Svg>
                 <LanguageText>{el.title}</LanguageText>
               </Language>
             ))}
           </ContainerLanguage>
         </LanguageSelection>
+        <LanguageSelection>
+          <Title>Новости</Title>
+          <News/>
+        </LanguageSelection>
+        
       </Container>
     </>
   );
@@ -64,6 +74,7 @@ const LanguageSelection = styled.div`
   margin: 50px auto;
   border-radius: 15px;
   backdrop-filter: blur(5px);
+  padding: 0 10px;
 `;
 const Text = styled.div`
   font-size: 20px;
@@ -108,4 +119,9 @@ const Language = styled(NavLink)<{ background: string }>`
   &:hover ${LanguageText} {
     color: ${(props) => props.color};
   }
+`;
+
+const Title = styled.h2`
+  margin-bottom: 10px;
+  padding: 15px 20px 0;
 `;

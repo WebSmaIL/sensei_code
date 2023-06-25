@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
     <>
     <Container>
-        <SpanLink to='/homepage'>
+        <SpanLink to='/'>
             <ImHome/>
             <ContainerText width='100px'>Главная</ContainerText>
         </SpanLink>

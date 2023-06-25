@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { IModule } from "../../../../../redux/ducks/tasks/interfaces";
 import TaskBlock from "./taskBlock/TaskBlock";
@@ -10,11 +11,19 @@ interface Props {
 }
 
 const Module = ({modules}: Props) => {
+  
+  const params = useParams()
+  console.log(params)
+  let currentModules;
+  if (modules) {
+    currentModules= modules.filter(el=>el.lang_id === Number(params.lang))
+  }
 
   return (
     <Container>
-      {modules?.map((el) => (
+      {currentModules?.map((el) => (
         <TaskBlock
+          key={el.id}
           title={el.title}
           child={
             <Theme

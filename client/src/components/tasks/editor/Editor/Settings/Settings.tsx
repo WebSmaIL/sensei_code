@@ -9,9 +9,29 @@ import RunButton from "./RunButton/RunButton";
 interface IProps {
   options: IEditorOptions;
   setOptions: React.Dispatch<React.SetStateAction<IEditorOptions>>;
+  answer?: string,
+  setisRightAnswer: React.Dispatch<React.SetStateAction<boolean>>
+  setisStart: React.Dispatch<React.SetStateAction<boolean>>
+  code?: string;
 }
 
-const Settings = ({ options, setOptions }: IProps) => {
+const Settings = ({ options, setOptions, setisRightAnswer, setisStart, answer, code }: IProps) => {
+
+  const handleSubmit = () => {
+    console.log("answer", answer, "code", code);
+    if(answer && code) {
+      setisStart(true);
+      if (answer === code) {
+        setisRightAnswer(true)
+      } else {
+        setisRightAnswer(false)
+        setTimeout(() => {
+          setisStart(false);
+        }, 2000);
+      }
+    }
+  }
+
   return (
     <SettingsContainer>
       <div>
@@ -64,7 +84,7 @@ const Settings = ({ options, setOptions }: IProps) => {
           value={fontSizeOptions.find((el) => el.value === options.fontSize)}
         />
       </div>
-      <RunButton />
+      <RunButton handleSubmit={handleSubmit} />
     </SettingsContainer>
   );
 };

@@ -5,13 +5,12 @@ import { getTasks } from "../../../../redux/ducks/tasks/selector";
 import Module from "./module/Module";
 
 const Language = () => {
-  const tasks = useAppSelector(getTasks)
+  const tasks = useAppSelector(getTasks);
 
   return (
     <>
       <Container>
-        <SpanHeader>{tasks.lang_name}</SpanHeader>
-        <Module modules={tasks.modules} />
+        <Module modules={tasks} />
       </Container>
     </>
   );
@@ -25,13 +24,4 @@ const Container = styled.div`
   height: max-content;
   min-height: 100vh;
   padding: 10px 0;
-`;
-
-const SpanHeader = styled.div`
-  width: max-content;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 10px;
-  margin-left: 75px;
-  border-radius: 5px;
 `;

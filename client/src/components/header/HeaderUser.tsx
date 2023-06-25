@@ -5,6 +5,7 @@ import {AvatarUser} from '../../assets/img/avatar/index'
 import { TbMessage2Code } from 'react-icons/tb';
 import { useAppSelector } from '../../hooks';
 import { getUserInfo } from '../../redux/ducks/userInfo/selectors';
+import { NavLink } from 'react-router-dom';
 
 const HeaderUser = () => {
   const user = useAppSelector(getUserInfo);
@@ -17,7 +18,7 @@ const HeaderUser = () => {
             </Span>
             <UserInfo>
               <Avatar src={AvatarUser} ></Avatar>
-              <NameUser>{user.userInfo.login}</NameUser>
+              <NameUser to = '/profile'>{user.userInfo.login}</NameUser>
             </UserInfo>  
             
         </Container>
@@ -56,9 +57,10 @@ const Avatar = styled.img`
    
 `
 
-const NameUser = styled.div`
+const NameUser = styled(NavLink)`
   font-size: 25px;
-  
+  text-decoration: none;
+  color: #fff;
   padding: 5px 10px 0 0;
   
   
