@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
 const connectionData = {
     user: "postgres",
-    host: "192.168.0.105",
+    host: "localhost",
     database: "senseicodedb",
-    password: "s102839!",
+    password: "admin",
     port: 5432
 };
 const pool = new pg_1.Pool(connectionData);

@@ -25,6 +25,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+app.use(express_1.default.static('files'));
 const port = process.env.PORT || 8001;
 app.listen(port, () => {
     console.log(`Server listening on ${port} port`);

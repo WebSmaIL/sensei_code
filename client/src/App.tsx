@@ -14,6 +14,8 @@ import EditorMain from './components/tasks/editor/EditorMain';
 import { useAppSelector } from './hooks';
 import { getUserInfo } from './redux/ducks/userInfo/selectors';
 import PageNews from './components/home/content/news/pageNews/PageNews';
+import PageDocument from './components/pageDocument/PageDocument';
+import Document from './components/pageDocument/document/Document';
 
 const App = () => {
     const isAuthorize = useAppSelector(getUserInfo).userInfo.isAuthorize;
@@ -34,6 +36,8 @@ const App = () => {
                 <Route path="/settings" element={<SettingsUser/>} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/news/:id" element={<PageNews/>}/>
+                <Route path='/document/' element={<PageDocument/>}/>
+                <Route path='/document/:id' element={<Document/>}/>
             </Routes>
         </>
     );

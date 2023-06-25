@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { polygon } from '../../../../../../assets/img/svgIcons';
 
-const RunButton = () => {
+interface Props {
+    handleSubmit: () => void;
+}
+
+const RunButton = ({handleSubmit}:Props) => {
     return (
-        <Button>
+        <Button onClick={()=>handleSubmit()}>
             <img src={polygon} alt="" />
             <span>Start</span>
         </Button>

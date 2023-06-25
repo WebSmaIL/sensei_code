@@ -1,5 +1,6 @@
 import { javascript } from "@codemirror/lang-javascript";
 import { python } from "@codemirror/lang-python";
+import { cpp } from "@codemirror/lang-cpp";
 import { Extension } from "@codemirror/state";
 import { dracula } from "@uiw/codemirror-theme-dracula";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
@@ -31,6 +32,11 @@ export const langOptions: IOptionsLang[] = [
     id: 2,
     label: "Python",
     value: python(),
+  },
+  {
+    id: 3,
+    label: "C++",
+    value: cpp(),
   },
 ];
 

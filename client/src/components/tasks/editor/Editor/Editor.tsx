@@ -8,8 +8,14 @@ import Settings from './Settings/Settings';
 import { IEditorOptions } from './interfaces';
 import { codeEditor } from '../../../../assets/img/svgIcons';
 
-const Editor = () => {
-    const [code, setCode] = useState<string | undefined>(undefined);
+interface Props {
+    answer?: string,
+    setisRightAnswer: React.Dispatch<React.SetStateAction<boolean>>
+    setisStart: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Editor = ({setisRightAnswer, setisStart, answer}: Props) => {
+    const [code, setCode] = useState<string | undefined>("console.log('hello world!');");
     const handleChangeCode = React.useCallback(
         (value: string, viewUpdate: ViewUpdate) => {
             setCode(value);
@@ -36,7 +42,7 @@ const Editor = () => {
                             border: '1px solid #202020',
                             fontSize: editorOptions.fontSize + 'px',
                         }}
-                        value="console.log('hello world!');"
+                        value={code}
                         height="400px"
                         width="800px"
                         extensions={[editorOptions.lang.link]}
@@ -47,6 +53,10 @@ const Editor = () => {
                     <Settings
                         options={editorOptions}
                         setOptions={setEditorOptions}
+                        code={code}
+                        setisRightAnswer={setisRightAnswer}
+                        setisStart={setisStart}
+                        answer={answer}
                     />
                 </EditorMain>
             </EditorContainer>

@@ -2,13 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { cmd } from '../../../../assets/img/svgIcons';
 
-const Output = () => {
+interface Props {
+    isRight: boolean,
+    isStart: boolean
+}
+
+const Output = ({isRight, isStart}: Props) => {
     return (
         <OutputWrapper>
             <TitleContainer>
                 <img src={cmd} alt="" />
                 <Title>Output</Title>
             </TitleContainer>
+            {isStart && (isRight ? "КОМПИЛЯЦИЯ ПРОШЛА УСПЕШНО" : "ОШИБКА")}
         </OutputWrapper>
     );
 };

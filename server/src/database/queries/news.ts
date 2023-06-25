@@ -5,7 +5,7 @@ const NEWS_QUERIES = {
 
   getNewsById: (id: string) => pool.query(`SELECT * FROM news WHERE id=${id}`),
 
-  addNews: (title: string, content: string, date: Date) => pool.query(`INSERT INTO news (title, content, date) VALUES ('${title}', '${content}', '${date}')`),
+  addNews: (title: string, content: string, date: Date, description: string) => pool.query(`INSERT INTO news (title, content, date, description) VALUES ('${title}', '${content}', '${date}', '${description}')`),
 };
 
 export default NEWS_QUERIES;

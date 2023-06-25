@@ -4,7 +4,7 @@ const connectionData = {
     user: "postgres",
     host: "localhost",
     database: "senseicodedb",
-    password: "4444",
+    password: "admin",
     port: 5432
 }
 

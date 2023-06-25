@@ -1,16 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
+import parser from 'html-react-parser';
 
-const Instructions = () => {
+interface IProps {
+    description?: string
+}
+const Instructions = ({description}: IProps) => {
   return (
     <>
         <Container>
-            <Paragraph>Print работает с круглыми скобками. Вот корректный синтаксис: <Code>print()</Code></Paragraph>
-            <Paragraph>Если нужно вывести текст, то его необходимо заключить в скобки: <Code>print("Hello World")</Code>.</Paragraph>
-            <Paragraph>Символ <Code>#</Code> используется для добавления комментариев в текст. Эти комментарии не выполняются и не выводятся. Они выступают всего лишь заметками для тех, кто работает с кодом.</Paragraph>
-            <Paragraph>После ее запуска будет выведено сообщение: Hello world.</Paragraph>
-            <Hr/>
-        
+            {description && parser(description)}
         </Container>
     </>
   )
@@ -40,24 +39,19 @@ const Container = styled.div`
         
         border-radius: 8px;
     }
-`
-
-const Paragraph = styled.p`
-    padding: 5px 0;
-    text-align: justify;
-`
-
-const Hr = styled.hr`
-    display: block;
-    height: 1px;
-    background: #213336;
-    background-position: center center;
-    background-size: 100% 1px;
-    border-color: transparent;
-`
-
-const Code = styled.code`
-    background: #97959519;
-    font-size: 16px;
-    padding: 2px 5px;
+    & p {
+        text-align: justify;
+        text-indent: 30px;
+        padding: 10px 0;
+        
+    }
+    & code {
+        display: block;
+        font-size: 18px;
+        background: rgba(0,0,0,0.2);
+        padding: 5px 10px;
+        margin-left: 20px;
+        margin-top: 10px;
+        
+    }
 `

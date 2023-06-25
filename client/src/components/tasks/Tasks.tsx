@@ -1,14 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { FaPlay } from "react-icons/fa";
 import Instructions from "./Instructions";
 import { useParams } from "react-router-dom";
 import EditorMain from "./editor/EditorMain";
+import { useAppSelector } from "../../hooks";
+import { getTasks } from "../../redux/ducks/tasks/selector";
 
 
 const Tasks = () => {
   const params = useParams();
-  console.log(params);
+  const modules = useAppSelector(getTasks);
+  let currentTask;
+  if (params) {
+    currentTask = modules.find(el=>el.lang_id === Number(params.lang_id))?.tasks.find(el=>el.task_id === Number(params.task_id))
+  }
+
+  console.log(currentTask?.answer);
   return (
     <>
       <Container>
@@ -17,15 +25,15 @@ const Tasks = () => {
           <TitleIcon>
             <FaPlay />
           </TitleIcon>
-          <Title>Правила использования print().</Title>
+          <Title>{currentTask?.title}</Title>
         </ContainerTitle>
         <ContainerBtn>
           <Instruct>Инструкция</Instruct>
           <Exit>Выход</Exit>
         </ContainerBtn>
         <ContentContainer>
-          <Instructions />
-          <EditorMain />
+          <Instructions description={currentTask?.question} />
+          <EditorMain answer={currentTask?.answer} />
         </ContentContainer>
       </Container>
     </>
